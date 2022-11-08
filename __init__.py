@@ -26,7 +26,7 @@ def index():
         print(url_list)
         outputfile_name = download_and_convert(url_list)
         print(outputfile_name)
-        return send_file(outputfile_name+'.zip', as_attachment=True)
+        return send_file('./tmp/archives/'+outputfile_name+'.zip', as_attachment=True)
         # while download_and_convert(url_list) != True:
         #     return render_template('index.html',title="test")
         return render_template('index.html',title="Convert finish")
