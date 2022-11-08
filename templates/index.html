@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+{% block title %} {{title}} {% endblock %}
+
+
+{% block content %} 
+
+<form id="url_form" action="/" method="post">
+
+   
+<button onclick="generalinfodisplay();">Submit</button>
+    
+</form>
+<button onclick="textBoxCreate()">Add Url Field</button>
+<h2 id="info" class="visually-hidden"> Please do not close the tab or else all progress will be lost</h2>
+
+{% for message in get_flashed_messages() %}
+<h2>{{ message }}</h2>
+{% endfor %}
+<script>
+    function generalinfodisplay(){
+        var info = document.getElementById("info");
+        info.removeAttribute("class")
+    }
+    i=0;
+    function textBoxCreate(){
+        var y = document.createElement("INPUT");
+        y.setAttribute("type", "text");
+        y.setAttribute("Placeholder", "Url: " + i);
+        y.setAttribute("Name", "url" + i);
+        document.getElementById("url_form").appendChild(y);
+        i++;
+        }
+    </script>
+
+{% endblock %}
