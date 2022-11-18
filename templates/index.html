@@ -13,7 +13,7 @@
     </form>
     <button onclick="textBoxCreate()"  type="button" class="btn btn-secondaryy" data-toggle="button" aria-pressed="false" autocomplete="off">Add Url Field</button>
     <div class="visually-hidden" id="info">
-        <h3>Downloading and converting your videos</h3>
+        <h3>Downloading and converting your videos . . .</h3>
         <h2 > Please do not close the tab or else all progress will be lost</h2>
     </div>
     
@@ -27,12 +27,9 @@
         }
         i=0;
 
-    
-
         function textBoxCreate(){
             var outer_div = document.createElement("div");
             outer_div.setAttribute("class", "input-group mb-3");
-            
             var inner_input = document.createElement("Input");
             inner_input.setAttribute("type","text")
             inner_input.setAttribute("class","input-group-text")
