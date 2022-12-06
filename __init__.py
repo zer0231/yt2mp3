@@ -10,15 +10,15 @@ def download_and_convert(yt_list):
     with concurrent.futures.ThreadPoolExecutor() as executor:
         executor.map(download_to_mp3,yt_list)
     return convert_to_zip()
-    # return True
 
+# def verify_urls(url):
+    #return true if url is valid else false
 
 @app.route('/',methods=["GET","POST"])
 def index():
     if request.method == "GET":
         return render_template('index.html',title="YouTube-To-Mp3")
     if request.method == "POST":
-        # flash("Please donot close the tab or else all progress will be lost")
         url_list = []
         urls = request.form.to_dict().values()
         for url in urls:
@@ -27,9 +27,8 @@ def index():
         outputfile_name = download_and_convert(url_list)
         print(outputfile_name)
         return send_file('./tmp/archives/'+outputfile_name+'.zip', as_attachment=True)
-        # while download_and_convert(url_list) != True:
-        #     return render_template('index.html',title="test")
         return render_template('index.html',title="Convert finish")
+
 if __name__ == "__main__":
     app.run(debug=True)
     

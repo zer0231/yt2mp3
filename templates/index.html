@@ -3,18 +3,29 @@
 
 
 {% block content %} 
-<div class="container p-lg-5">
+<div>
+    <h3>YT2MP3</h3>
     
-    <form id="url_form" action="/" method="post">
-
+    <form id="url_form" action="/" method="post" class="position-absolute top-50 start-50 translate-middle">
+        <p>Click on Add Url Field button to add url of youtube videos.</p>
+        <p>And click submit after finish</p>
         <div id="dynamic_inputs"></div>
         <button  class="btn btn-primary" onclick="generalinfodisplay();">Submit</button>
-        
     </form>
-    <button onclick="textBoxCreate()"  type="button" class="btn btn-secondaryy" data-toggle="button" aria-pressed="false" autocomplete="off">Add Url Field</button>
+    <button onclick="textBoxCreate()"  type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off">Add Url Field</button>
+    <button onclick="textBoxRemove()"  type="button" class="btn btn-secondary" data-toggle="button" aria-pressed="false" autocomplete="off">Remove Url Field</button>
+    
     <div class="visually-hidden" id="info">
-        <h3>Downloading and converting your videos</h3>
-        <h2 > Please do not close the tab or else all progress will be lost</h2>
+
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">
+                <p>Downloading and converting your videos . . .</p>
+                <p>Please do not close the tab or else all progress will be lost</p>
+              </span>
+            </div>
+          </div>
+
     </div>
     
     {% for message in get_flashed_messages() %}
@@ -27,12 +38,10 @@
         }
         i=0;
 
-    
-
         function textBoxCreate(){
             var outer_div = document.createElement("div");
             outer_div.setAttribute("class", "input-group mb-3");
-            
+            outer_div.setAttribute("id","url"+i)
             var inner_input = document.createElement("Input");
             inner_input.setAttribute("type","text")
             inner_input.setAttribute("class","input-group-text")
@@ -40,7 +49,24 @@
             outer_div.appendChild(inner_input)
             document.getElementById("dynamic_inputs").appendChild(outer_div);
             i++;
+            console.log("Item added"+i)
             }
+
+        function textBoxRemove(){
+            if (i>0)
+            {
+                i = i - 1
+            console.log("removing url"+i)
+            latest_div = document.getElementById("url"+i)
+            document.getElementById("dynamic_inputs").removeChild(latest_div)
+            console.log("Item removed"+i)
+            }
+            else{
+                console.log("No item to remove")
+            }
+            
+            
+        }
         </script>
     
 </div>
